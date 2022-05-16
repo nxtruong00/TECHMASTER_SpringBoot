@@ -23,7 +23,7 @@ import vn.techmaster.myfirstweb.model.Student;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-
+private List<Student> list
     @GetMapping(value = "/random", produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
     public String getRandomString() {
@@ -39,7 +39,7 @@ public class HomeController {
             char ch = ALPHA_NUMERIC.charAt(number);
             sb.append(ch);
         }
-        return "Random String: "+sb.toString();
+        return "Random String: "+sb;
     }
 
     @GetMapping(value = "/quote", produces = MediaType.TEXT_HTML_VALUE)
@@ -64,12 +64,16 @@ public class HomeController {
     Student student1=new Student("HS001","Nam",16);
     Student student2=new Student("HS002","Trường",18);
     Student student3=new Student("HS003","Trung",17);
-    
-//    @GetMapping("/student")
-//    @ResponseBody
-//    public int (@RequestParam("a") int a, @RequestParam("b") int b) {
-//        return a + b;
-//    }
+
+    @GetMapping("/student")
+    @ResponseBody
+    public int getAllStudents (@RequestParam("a") int a, @RequestParam("b") int b) {
+        List<Student>list=new ArrayList<>();
+        list.add(student1);
+        list.add(student2);
+        list.add(student3);
+
+    }
 
     @GetMapping(value = "/hi", produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
