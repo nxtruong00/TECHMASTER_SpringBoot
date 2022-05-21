@@ -61,20 +61,24 @@ public class JobController {
 
     @GetMapping(value = "/sortbylocation")
     public List<Job> sortByLocation() {
-        return jobs.values().stream().sorted(Comparator.comparing(Job::getLocation)).collect(Collectors.toList());
+        return jobs.values().stream()
+                .sorted(Comparator.comparing(Job::getLocation))
+                .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/salary/{salary}")
     public List<Job> findJobBySalary(@PathVariable("salary") int salary) {
-        return jobs.values().stream().filter(o1 -> o1.getMax_salary() >= salary && o1.getMin_salary() <= salary).collect(Collectors.toList());
+        return jobs.values().stream()
+                .filter(o1 -> o1.getMax_salary() >= salary && o1.getMin_salary() <= salary)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/keyword/{keyword}")
     public List<Job> findJobByKeyWord(@PathVariable("keyword") String keyword) {
         return jobs.values()
                 .stream()
-                .filter(o1 -> o1.getTitle().toLowerCase().contains(keyword)
-                        || o1.getDescription().toLowerCase().contains(keyword))
+                .filter(o1 -> o1.getTitle().toLowerCase().contains(keyword.toLowerCase())
+                        || o1.getDescription().toLowerCase().contains(keyword.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
@@ -82,8 +86,8 @@ public class JobController {
     public List<Job> findJobByLocation(@RequestParam("keyword") String keyword, @RequestParam("location") Location location) {
         return jobs.values()
                 .stream()
-                .filter(o1 -> (o1.getTitle().toLowerCase().contains(keyword)
-                        || o1.getDescription().toLowerCase().contains(keyword))
+                .filter(o1 -> (o1.getTitle().toLowerCase().contains(keyword.toLowerCase())
+                        || o1.getDescription().toLowerCase().contains(keyword.toLowerCase()))
                         && o1.getLocation() == location)
                 .collect(Collectors.toList());
     }
