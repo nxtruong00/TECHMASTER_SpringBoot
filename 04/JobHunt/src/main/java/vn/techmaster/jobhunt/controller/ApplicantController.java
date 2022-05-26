@@ -46,15 +46,15 @@ public class ApplicantController {
         return "redirect:/applicant/list";
     }
 
-    @GetMapping("/find/{keyword}")
-    public String searchApplicant(Model model, @PathVariable String keyword) {
-
-
-        model.addAttribute("jobs",jobRepository.getJobs());
-        model.addAttribute("skills",Skill.values());
-        model.addAttribute("applicant", applicant);
-        return "applicant_update";
-    }
+//    @GetMapping("/find/{keyword}")
+//    public String searchApplicant(Model model, @PathVariable String keyword) {
+//
+//
+//        model.addAttribute("jobs",jobRepository.getJobs());
+//        model.addAttribute("skills",Skill.values());
+//        model.addAttribute("applicant", applicant);
+//        return "applicant_update";
+//    }
 
     @GetMapping("/delete/{id}")
     public String deleteApplicant(@PathVariable String id) {
