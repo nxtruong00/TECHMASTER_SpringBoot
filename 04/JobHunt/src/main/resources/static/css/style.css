@@ -1,0 +1,19 @@
+.form-group {
+    margin-top: 20px!important;
+}
+
+.index-header{
+    height: 600px;
+    background-image: url("/../images/back-ground/back_ground.jpg");
+}
+.index-heading{
+    background-color: #70A5C5;
+
+    font-size:40px ;
+    color: #fff;
+    font-weight: bolder;
+}
+.flag{
+    width: 45px;
+    height: 30px;
+}

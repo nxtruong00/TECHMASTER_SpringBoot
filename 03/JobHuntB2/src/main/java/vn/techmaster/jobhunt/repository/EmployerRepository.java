@@ -14,28 +14,43 @@ public class EmployerRepository {
     public EmployerRepository() {
         employers = new ConcurrentHashMap<>();
         employers.put("EMP-01", new Employer("EMP-01", "CMC Global",
-                "../static/images/cmc-global.jpg",
+                "images/cmc-global.jpg",
                 "https://cmcglobal.com.vn/", "cmcglobal@gmail.com"));
 
         employers.put("EMP-02", new Employer("EMP-02", "FPT Software",
-                "https://www.fpt-software.com/wp-content/uploads/sites/2/2017/06/logofsoft.png",
+                "images/fsoft.png",
                 "https://fpt-software.com.vn/", "fptsoftware@gmail.com"));
 
         employers.put("EMP-03", new Employer("EMP-03", "Savvycom",
-                "https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/848067444ce863cf3555b2100fa5fd73.jpg",
+                "images/savvycom.png",
                 "https://savvycom.com.vn/", "savvycom@gmail.com"));
 
         employers.put("EMP-04", new Employer("EMP-04", "Softdreams",
-                "https://media-exp1.licdn.com/dms/image/C560BAQGdiPgW18wOKA/company-logo_200_200/0/1591244702925?e=2147483647&v=beta&t=_qRpdJzbghIDLCAsv3Ruwrdmy7JjFq2qYRt5divSyTU",
+                "images/softdreams.png",
                 "https://easyinvoice.com.vn/", "softdreams@gmail.com"));
 
         employers.put("EMP-05", new Employer("EMP-05", "NTQ Solution",
-                "https://media.graphassets.com/glo1PqMJTpG5Ut6EZqCW",
+                "images/NTQ.jpg",
                 "https://ntqsolution.com.vn/", "ntq-solution@gmail.com"));
     }
 
-    public ConcurrentHashMap<String,Employer> getEmployers() {
+    public List<Employer> getEmployers() {
+        return employers.values().stream().toList();
+    }
 
-        return employers;
+    public Employer getEmployerById(String id) {
+        return employers.get(id);
+    }
+
+    public void createEmployer(Employer employer) {
+        employers.put(employer.getId(), employer);
+    }
+
+    public void updateEmployer(Employer employer) {
+        employers.put(employer.getId(), employer);
+    }
+
+    public void deleteEmployerById(String id) {
+        employers.remove(id);
     }
 }

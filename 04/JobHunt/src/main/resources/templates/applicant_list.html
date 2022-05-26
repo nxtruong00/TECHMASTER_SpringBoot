@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="template.html :: header('employers')">
+    <title>Applicant List</title>
+</head>
+<body>
+<header th:insert="template.html :: topmenu"></header>
+<div class="container">
+    <h1 class="text-center" style="margin-top: 20px">Applicant List</h1>
+
+<!--    <a class="nav-link btn btn-primary" style="color: #fff;width:200px ;" th:href="@{/applicant/add}">Add a Applicant</a>-->
+
+    <div class="my-5 card">
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead style="color: #fff" class="bg-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" style="width: 50px">Job</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Skills</th>
+                    <th scope="col">Introducing Letter</th>
+                    <th scope="col" style="border-left: hidden"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="applicant,iStat: ${applicants}">
+                    <th scope="row" th:text="${iStat.index}+1"></th>
+                    <td th:text="${applicant.job_id}"></td>
+                    <td th:text="${applicant.name}" style="width: 180px"></td>
+                    <td th:text="${applicant.email}"></td>
+                    <td th:text="${applicant.phone}"></td>
+                    <td th:text="${applicant.skills}"></td>
+                    <td th:text="${applicant.introducing_letter}"></td>
+                    <td style="border-left: hidden;width: 180px">
+                        <div class="row" >
+                            <form class="col" style="margin-right:-40px " th:action="@{${'update/' + applicant.id}}" method="PUT">
+                                <input
+                                        class="btn btn-small btn-primary"
+                                        type="submit"
+                                        value="Update"/>
+                            </form>
+                            <form class="col" style="margin-right:-20px " th:action="@{${'delete/' + applicant.id}}" method="GET">
+                                <input
+                                        class="btn btn-small btn-danger"
+                                        type="submit"
+                                        value="Delete"/>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<header th:replace="template.html :: footer"></header>
+</body>
+</html>
